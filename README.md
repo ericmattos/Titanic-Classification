@@ -2,7 +2,7 @@
 
 ## 1. Introduction
 
-This is a classification project using Python and the Titanic data set. Our goal was to use different machine learning algorithms to predict which passengers survived and compare the results to determine which algorithm is best suited for this problem. The algorithms we tested were naive Bayes, decision tree, random forest, k nearest neighbors, logistic regression, support vector machines and neural network. The ones with the best performance were decision tree, random forest and logistic regression and the results for these three algorithms were not statistically distinct from each other.
+This is a classification project using Python and the Titanic data set. Our goal was to use different machine learning algorithms to predict which passengers survived and compare the results to determine which algorithm is best suited for this problem. The algorithms we tested were the naive Bayes, decision tree, random forest, k nearest neighbors, logistic regression, support vector machines and neural networks classifiers. The ones with the best performance were decision tree, random forest and logistic regression and the results for these three algorithms were not statistically distinct from each other.
 
 One of the most well known classification problems is that of the Titanic. The ship famously sunk during it's first voyage due to a collision with an iceberg, leading to the deaths of most of it crew and passengers. The idea behind the projects is, therefore, to use machine learning to predict which passengers would survive, based on the available passenger data. We repeated this process using different classification algorithms to find which one is the best fit for this particular problem.
 
@@ -38,9 +38,9 @@ Finally, we use the standard scaler on all of the predicting attributes, so that
 
 Before we proceed with using the algorithms, let us illustrate the procedure we'll be following with each one.
 
-The first step is the tuning of the parameters, that is, we test different values for the algorithms parameters for different train-test splits and then select the parameters that led to the highest accuracy. This is done through the grid search function of the scikit-learn package.
+The first step is the tuning of the parameters, that is, we test different values for the algorithms' parameters for different train-test splits and then select the parameters that led to the highest accuracy. This is done through the grid search function of the scikit-learn package.
 
-Once we determine the parameters, we use the cross validation to determine the accuracy, where cross validation means using different train-test splits. We will set k=10, meaning that we are going to split the base in ten parts and alternate which one is used for the test, we will dothis with 30 different splits. At the end of this process, we are going to have an array with 30 different values of accuracy, which we'll use to determine the average and the standard deviation. The higher the average accuracy and the lower the standard deviation, the better the algorithm has performed.
+Once we determine the parameters, we use the cross validation to determine the accuracy, where cross validation means using different train-test splits. We will set k=10, meaning that we are going to split the base in ten parts and alternate which one is used for the test, we will do this with 30 different splits. At the end of this process, we are going to have an array with 30 different values of accuracy, which we'll use to determine the average and the standard deviation. The higher the average accuracy and the lower the standard deviation, the better the algorithm has performed.
 
 ### 4.1. Naive Bayes
 
@@ -52,4 +52,66 @@ We obtain that the average accuracy is 0.464486 and that the standard deviation 
 
 ### 4.2. Decision Tree
 
-Next we will test the decision tree classifier
+Next we will test the decision tree classifier. This algorithm creates a "tree", with the attributes as the nodes and their values as the branches, and uses this tree to determine to which class a given entry belongs.
+
+Tuning the parameters, we have that the best value for "criterion" is "entropy", for "min_samples_leaf" it's 1, for "min_samples_split" it's 10 and for "splitter" it's "best".
+
+We obtain that the average accuracy is 0.832918 and that the standard deviation is 0.007041.
+
+### 4.3. Random Forest
+
+The random forest algorithm is an improvement over the decision tree one. It employs multiple different trees and then decides based on the majority.
+
+Tuning the parameters, we have that the best value for "criterion" is "gini", for "min_samples_leaf" it's 1, for "min_samples_split" it's 2 and for "n_estimators" it's 40.
+
+We obtain that the average accuracy is 0.832315 and that the standard deviation is 0.005923.
+
+### 4.4. K Nearest Neighbors (kNN)
+
+The kNN classifier uses the values of each attribute of a given entry to determine it's distance to the existing entries, then assigns to the new entry the same class as the majority of its k nearest neighbors.
+
+Tuning the parameters, we have that the best value for "n_neighbors" is 10 and for "p" it's 1.
+
+We obtain that the average accuracy is 0.603638 and that the standard deviation is 0.022012.
+
+### 4.5. Logistic Regression
+
+The logistic regression classifier places the entries in a graph and draws a line that approximates them, allowing it to use the line to probabilistically predict the class of the new entries.
+
+Tuning the parameters, we have that the best value for "C" is 1.5, for "solver" it's "sag" and for "tol" it's 0.000001.
+
+We obtain that the average accuracy is 0.8267348 and that the standard deviation is 0.004958.
+
+### 4.6. Support Vector Machines (SVM)
+
+The SVM algorithm seeks to create hyperplanes separating entries belonging to different classes, and uses these hyperplanes to determine to which class the new entries belong.
+
+Tuning the parameters, we have that the best value for "C" is 1, for "kernel" it's "linear" and for "tol" it's 0.001.
+
+We obtain that the average accuracy is 0.821293 and that the standard deviation is 0.002826.
+
+### 4.7. Neural Networks
+
+The final algorithm we are going to test is the neural networks classifier. This algorithm was inspired by biological neural networks and works through artificial neurons, which emulate the behavior or natural neurons.
+
+Tuning the parameters, we have that the best value for "activation" is "logistic", for "batch_size" it's 10 and for "solver" it's "adam".
+
+We obtain that the average accuracy is 0.811182 and that the standard deviation is 0.009650.
+
+## Comparing the Classifiers
+
+Now that we have the results for each classification algorithm, we can compare them and decide which one is best suited for this problem. Our first step in doing so is to verify if the results are statistically distinct from each other, this can be done with the ANOVA and Tukey tests, which compare normally distributed sets.
+
+To determine if the results are normally distributed (null hypothesis) or not (alternative hypothesis) we will use the Shapiro function with alpha=0.05. That is, if we obtain a p-value smaller than 0.05, we reject the null hypothesis, otherwise we accept it. Thus, we obtain that all of the results are normally distributed.
+
+Next, we can use the ANOVA test, which will compare all of the result sets and determine if they are statistically the same (null hypothesis) or not (alternative hypothesis). Employing this test, we obtain that the results are statistically distinct from each other.
+
+Finally, we can employ the Tukey test, which will compare each result set with each other one and determine if they are statistically the same (null hypothesis) or not (alternative hypothesis). We obtain that the results for the decision tree, random forest and logistic regression classifiers are not statistically distinct. Since these algorithms were the ones with the highest accuracies, we may choose any of them as the best classifier for this problem.
+
+## Conclusion
+
+We set out to solve the Titanic classification problem with multiple different machine learning algorithms, in order to compare the results and determine which classifier is best suited for this problem.
+
+An initial analysis of the data revealed the importance of attributes such as sex and class, as well as a number of missing values, which had to be dealt with during preprocessing.
+
+Once the data was in a suitable form, we tested the naive Bayes, decision tree, random forest, kNN, logistic regression, SVM and neural networks classifier. We obtained that the three algorithms with the best performance, decision tree, random forest and logistic regression, led to results that were not statistically distinct from each other, meaning that any of these three may be chosen and the best suited classifier.
