@@ -1,8 +1,8 @@
 # Titanic Classification with Python
 
-## 1. Introduction
-
 This is a classification project using Python and the Titanic data set. Our goal was to use different machine learning algorithms to predict which passengers survived and compare the results to determine which algorithm is best suited for this problem. The algorithms we tested were the naive Bayes, decision tree, random forest, k nearest neighbors, logistic regression, support vector machines and neural networks classifiers. The ones with the best performance were decision tree, random forest and logistic regression and the results for these three algorithms were not statistically distinct from each other.
+
+## 1. Introduction
 
 One of the most well known classification problems is that of the Titanic. The ship famously sunk during it's first voyage due to a collision with an iceberg, leading to the deaths of most of it crew and passengers. The idea behind the projects is, therefore, to use machine learning to predict which passengers would survive, based on the available passenger data. We repeated this process using different classification algorithms to find which one is the best fit for this particular problem.
 
