@@ -1,4 +1,4 @@
-# Titanic-Classification
+# Titanic Classification with Python
 
 ## 1. Introduction
 
