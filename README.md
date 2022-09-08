@@ -8,7 +8,7 @@ One of the most well known classification problems is that of the Titanic. The s
 
 The data set we will be using is the *train.csv* file (which we renamed *titanic.csv*) obtained from https://www.kaggle.com/competitions/titanic/data?select=train.csv at 15:02 (BRT) of 30/06/2022.
 
-## 2. Preliminary Analysis
+## 2. Exploratory Data Analysis
 
 We can load the CSV file into Python using the pandas package. Before we use the machine learning algorithms, let us take a look at our data.
 
@@ -98,7 +98,7 @@ Tuning the parameters, we have that the best value for "activation" is "logistic
 
 We obtain that the average accuracy is 0.811182 and that the standard deviation is 0.009650.
 
-## Comparing the Classifiers
+## 5. Comparing the Classifiers
 
 Now that we have the results for each classification algorithm, we can compare them and decide which one is best suited for this problem. Our first step in doing so is to verify if the results are statistically distinct from each other, this can be done with the ANOVA and Tukey tests, which compare normally distributed sets.
 
@@ -108,7 +108,7 @@ Next, we can use the ANOVA test, which will compare all of the result sets and d
 
 Finally, we can employ the Tukey test, which will compare each result set with each other one and determine if they are statistically the same (null hypothesis) or not (alternative hypothesis). We obtain that the results for the decision tree, random forest and logistic regression classifiers are not statistically distinct. Since these algorithms were the ones with the highest accuracies, we may choose any of them as the best classifier for this problem.
 
-## Conclusion
+## 6. Conclusion
 
 We set out to solve the Titanic classification problem with multiple different machine learning algorithms, in order to compare the results and determine which classifier is best suited for this problem.
 
